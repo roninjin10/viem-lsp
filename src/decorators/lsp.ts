@@ -53,6 +53,31 @@ import {
   type DidSaveParameters,
   didSave,
 } from '../actions/textDocument/didSave.js'
+import {
+  type FormattingParameters,
+  type FormattingReturnType,
+  formatting,
+} from '../actions/textDocument/formatting.js'
+import {
+  type CodeActionParameters,
+  type CodeActionReturnType,
+  codeAction,
+} from '../actions/textDocument/codeAction.js'
+import {
+  type SignatureHelpParameters,
+  type SignatureHelpReturnType,
+  signatureHelp,
+} from '../actions/textDocument/signatureHelp.js'
+import {
+  type RenameParameters,
+  type RenameReturnType,
+  rename,
+} from '../actions/textDocument/rename.js'
+import {
+  type PrepareRenameParameters,
+  type PrepareRenameReturnType,
+  prepareRename,
+} from '../actions/textDocument/prepareRename.js'
 
 export type LspActions<transport extends Transport = Transport> = {
   // Lifecycle
@@ -71,6 +96,11 @@ export type LspActions<transport extends Transport = Transport> = {
   didChange: (params: DidChangeParameters) => Promise<void>
   didClose: (params: DidCloseParameters) => Promise<void>
   didSave: (params: DidSaveParameters) => Promise<void>
+  formatting: (params: FormattingParameters) => Promise<FormattingReturnType>
+  codeAction: (params: CodeActionParameters) => Promise<CodeActionReturnType>
+  signatureHelp: (params: SignatureHelpParameters) => Promise<SignatureHelpReturnType>
+  rename: (params: RenameParameters) => Promise<RenameReturnType>
+  prepareRename: (params: PrepareRenameParameters) => Promise<PrepareRenameReturnType>
 }
 
 export function lspActions<transport extends Transport = Transport>(
@@ -93,5 +123,10 @@ export function lspActions<transport extends Transport = Transport>(
     didChange: (args) => didChange(client, args),
     didClose: (args) => didClose(client, args),
     didSave: (args) => didSave(client, args),
+    formatting: (args) => formatting(client, args),
+    codeAction: (args) => codeAction(client, args),
+    signatureHelp: (args) => signatureHelp(client, args),
+    rename: (args) => rename(client, args),
+    prepareRename: (args) => prepareRename(client, args),
   }
 }

@@ -1,2 +1,5 @@
 export * from './lifecycle/index.js'
 export * from './textDocument/index.js'
+export * from './callHierarchy/index.js'
+export * from './typeHierarchy/index.js'
+export * from './workspace/index.js'
